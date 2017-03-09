@@ -1,0 +1,39 @@
+<% include ../partials/header%>
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1> Welcome to the Travel Portal </h1>
+            <p>Please login to see your tours</p>
+            <p>
+                <a class="btn btn-primary btn-large" href="/tours/new">Add new tour</a>
+            </p>
+        </div>
+    </header>
+    <% if (currentUser) { %>
+    <h2>Drafts:</h2>
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+         <% tours.forEach(function(tour){ %>
+             <div class="col-md-3 col-sm-6">
+                 <% if (tour.author.id.equals(currentUser._id)) { %>
+                 <div class="thumbnail">
+                     <div class="caption">
+                         <h4>To: <%= tour.name %> - From: <%= tour.author.username%></h4>
+                         <% var stDate = tour.startDate.toString().split(" "); %>
+                         <% var eDate = tour.endDate.toString().split(" "); %>
+                         <p><%= stDate[0] + " " + stDate[1] + " " + stDate[2] + " " + stDate[3]%> - <%= eDate[0] + " " + eDate[1] + " " + eDate[2] + " " + eDate[3]%></p>
+                         <p>Approving manager: <%=tour.manager%></p>
+                     </div> 
+                     <p>
+                         <a href="/tours/<%=tour._id %>" class="btn btn-primary">Review and submit</a>
+                     </p>
+                 </div>
+                 <% } %>
+            </div>
+         <% }); %>
+     </div>
+     <h2>Submitted:</h2>
+     <% } %>
+ </div>
+ 
+ <% include ../partials/footer%>

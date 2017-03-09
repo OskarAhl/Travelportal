@@ -1,0 +1,79 @@
+<% include ../partials/header%>
+
+
+<% var dates = {Jan: "01", Feb: "02", Mar:"03", Apr:"04", May: "05", Jun: "06", Jul: "07", Aug: "08", Sep: "09", Oct: "10", Nov: "11", Dec: "12"}; %>
+
+<% var stDate = tour.startDate.toString().split(" ").slice(1,4); %>
+<% var enDate = tour.endDate.toString().split(" ").slice(1,4); %>
+
+<%function dateformatter(dateArr) { %>
+    <% dateArr.splice(2, 0,dates[dateArr[0]]); %>
+    <% dateArr = dateArr.reverse(); %>
+    <% dateArr.pop(); %>
+    <% return dateArr.join("-")%>
+<% } %>
+
+<% var start = dateformatter(stDate)%>
+<% var end = dateformatter(enDate)%>
+
+
+<div class="container">
+    <div class=row>
+        <h1 style="text-align:center;">Edit <%=tour.name%></h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/tours/<%= tour._id%>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <label class="col-2 col-form-label">To Location</label>
+                    <input class="form-control" type=text name="tour[name]" value="<%=tour.name%>" required>
+                </div>
+                <div class="form-group">
+                    <label class="col-2 col-form-label">Brief description</label>
+                    <input class="form-control" type=text name="tour[description]" value="<%=tour.description%>" required>
+                </div>
+                <div class="form-group">
+                    <label class="col-2 col-form-label">Start Date</label>
+                    <input class="form-control" type="date" name="tour[startDate]" value="<%=start%>" required>
+                </div>
+                <div class="form-group">
+                    <label class="col-2 col-form-label">End Date</label>
+                    <input class="form-control" type="date" name="tour[endDate]" value="<%=end%>" required>
+                </div>
+                <div class="form-group">
+                    <label class="col-2 col-form-label">Mode of Travel</label>
+                    <input class="form-control" type=text name="tour[mode]" value="<%=tour.mode%>" required>
+                </div>
+                <label class="col-2 col-form-label">Ticket cost:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input class="form-control" type=number name="tour[price]" value="<%=tour.price%>">
+                </div>
+                <br>
+                <label class="col-2 col-form-label">Local taxi cost:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input class="form-control" type=number name="tour[localTaxi]" value="<%=tour.localTaxi%>">
+                </div>
+                <br>
+                <label class="col-2 col-form-label">Destination taxi cost:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input class="form-control" type=number name="tour[destinationTaxi]" value="<%=tour.destinationTaxi%>">
+                </div>
+                <br>
+                <label class="col-2 col-form-label">Hotel cost:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input class="form-control" type=number name="tour[hotelCost]" value="<%=tour.hotelCost%>">
+                </div> 
+                <br>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-lg btn-block"> Save as draft </button>
+                </div>
+            </form>
+            <a href="/tours"> Go back</a>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer%>

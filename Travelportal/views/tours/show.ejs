@@ -1,0 +1,60 @@
+<% include ../partials/header%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">The Travel Portal</p>
+        </div>
+        <div class="col-md-9">
+        <% if (currentUser && tour.author.id.equals(currentUser._id)) { %>
+            <div class=thumbnail>
+                <div class="caption-full">
+                    <h4 class="pull-right"><a>Total cost - $<%= tour.price + tour.localTaxi + tour.destinationTaxi + tour.hotelCost%></a></h4>
+                    <h4><a>Destination: <%=tour.name%></a></h4>
+                    <p>
+                        <strong>Description: </strong><%=tour.description%>
+                    </p>
+                    <% var stDate = tour.startDate.toString().split(" "); %>
+                    <p>
+                        <strong>Start date: </strong><%= stDate[0] + " " + stDate[1] + " " + stDate[2] + " " + stDate[3]%>
+                    </p>
+                    <% var eDate = tour.endDate.toString().split(" "); %>
+                    <p>
+                        <strong>End date: </strong><%= eDate[0] + " " + eDate[1] + " " + eDate[2] + " " + eDate[3]%>
+                    </p>
+                    <p>
+                        <strong>Mode of travel: </strong><%=tour.mode%>
+                    </p>
+                    <p>
+                        <strong>Ticket cost:</strong> $<%=tour.price%>
+                    </p>
+                    <p>
+                        <strong>Local taxi cost:</strong> $<%=tour.localTaxi%>
+                    </p>
+                    <p>
+                        <strong>Destination taxi cost:</strong> $<%=tour.destinationTaxi%>
+                    </p>
+                    <p>
+                        <strong>Hotel cost:</strong> $<%=tour.hotelCost%>
+                    </p>
+                    <p>
+                        <strong>Approving manager:</strong> <%=tour.manager%>
+                    </p>
+                    <p>
+                        <em>Submitted by <%= tour.author.username%></em>
+                    </p>
+                        <a class="btn btn-success" href="/tours">Submit for Review</a>
+                        <a class="btn btn-warning" href="/tours/<%=tour._id%>/edit">Edit</a>
+                        <form id="delete-form" action="/tours/<%=tour._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+
+
+
+<% include ../partials/footer%>

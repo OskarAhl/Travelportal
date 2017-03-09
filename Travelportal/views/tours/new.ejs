@@ -1,0 +1,70 @@
+<% include ../partials/header%>
+
+<div class="container">
+    <div class=row>
+        <h1 style="text-align:center;">Create new tour</h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/tours" method="POST">
+                <div class="form-group">
+                    <label class="col-2 col-form-label">To Location:</label>
+                    <input class="form-control" type=text name="name" placeholder="To Location" required>
+                </div>
+                <div class="form-group">
+                    <label class="col-2 col-form-label">Brief description:</label>
+                    <input class="form-control" type=text name="description" placeholder="brief description" required>
+                </div>
+                <div class="form-group">
+                    <label class="col-2 col-form-label">Start Date:</label>
+                    <input class="form-control" type="date" name="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label class="col-2 col-form-label">End Date:</label>
+                    <input class="form-control" type="date" name="endDate" required>
+                </div>
+                <div class="form-group">
+                    <label class="col-2 col-form-label">Mode of Travel:</label>
+                    <input class="form-control" type=text name="mode" placeholder="Mode of Travel" required>
+                </div>
+                <label class="col-2 col-form-label">Ticket cost:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input class="form-control" type=number name="price" placeholder="price">
+                </div>
+                <br>
+                <label class="col-2 col-form-label">Local taxi cost:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input class="form-control" type=number name="localTaxi" placeholder="local taxi cost">
+                </div>
+                <br>
+                <label class="col-2 col-form-label">Destination taxi cost:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input class="form-control" type=number name="destinationTaxi" placeholder="destination taxi cost">
+                </div>
+                <br>
+                <label class="col-2 col-form-label">Hotel cost:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input class="form-control" type=number name="hotelCost" placeholder="Hotel cost">
+                </div>
+                <br>
+                  <div class="form-group">
+                    <label>Approving Manager:</label>
+                        <select class="form-control" name="manager">
+                          <option value="Steve Jobs"> Steve Jobs</option>
+                          <option value="Peter Thiel"> Peter Thiel</option>
+                          <option value="Elon Musk">Elon Musk</option>
+                        </select>
+                  </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-lg btn-block"> Save as draft </button>
+                </div>
+            </form>
+            <a href="/tours"> Go back</a>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer%>
