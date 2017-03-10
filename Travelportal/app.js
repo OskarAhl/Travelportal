@@ -15,7 +15,7 @@ var tourRoutes       = require("./routes/tours"),
 
 
 // mongoose.connect("mongodb://localhost/travel_portal");
-mongoose.connect("mongodb://oskar:ulysses@ds123410.mlab.com:23410/travelportal");
+mongoose.connect("");
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
